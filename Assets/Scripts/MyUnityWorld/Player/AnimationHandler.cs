@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TopDownShooting
+namespace MyUnityWorld
 {
     public class AnimationHandler : MonoBehaviour
     {
         private static readonly int _isMoving = Animator.StringToHash("IsMove");
-        private static readonly int _isDamage = Animator.StringToHash("IsDamage");
 
         protected Animator _animator;
 
@@ -23,16 +22,6 @@ namespace TopDownShooting
         public void Move(Vector2 obj)
         {
             _animator.SetBool(_isMoving, obj.magnitude > 0.5f);
-        }
-
-        public void Damage()
-        {
-            _animator.SetBool(_isDamage, true);
-        }
-
-        public void InvincibilityEnd()
-        {
-            _animator.SetBool(_isDamage, false);
         }
     }
 }
