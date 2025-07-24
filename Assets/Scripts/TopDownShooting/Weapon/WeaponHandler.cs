@@ -40,6 +40,8 @@ namespace TopDownShooting
         private Animator _animator;
         private SpriteRenderer _weaponRenderer;
 
+        public AudioClip AttackSoundClip;
+
         protected virtual void Awake()
         {
             BaseController = GetComponentInParent<BaseController>();
@@ -72,6 +74,15 @@ namespace TopDownShooting
         public virtual void Attack()
         {
             AttackAnimation();
+
+            if(AttackSoundClip != null)
+            {
+                SoundManager.PlayClip(AttackSoundClip);
+            }
+            else
+            {
+                Debug.LogWarning("AttackSoundClip is not assigned in " + gameObject.name);
+            }
         }
 
         public void AttackAnimation()

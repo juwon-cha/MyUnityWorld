@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TopDownShooting;
@@ -16,6 +17,10 @@ public class ResourceController : MonoBehaviour
 
     public float CurrentHealth { get; private set; }
     public float MaxHealth => _statHandler.Health;
+
+    public AudioClip DamageClip;
+
+    private Action<float, float> OnChangeHealth;
 
     private void Awake()
     {
@@ -69,9 +74,16 @@ public class ResourceController : MonoBehaviour
         CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth; // 최대 체력 초과 방지
         CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth; // 최소 체력 0으로 제한
 
-        if(change < 0)
+        OnChangeHealth?.Invoke(CurrentHealth, MaxHealth); // 체력 변경 이벤트 호출
+
+        if (change < 0)
         {
             _animationHandler.Damage(); // 데미지 애니메이션 실행
+
+            if (DamageClip != null)
+            {
+                SoundManager.PlayClip(DamageClip); // 데미지 사운드 재생
+            }
         }
 
         if(CurrentHealth <= 0)
@@ -84,6 +96,16 @@ public class ResourceController : MonoBehaviour
 
     private void Death()
     {
+        _baseController.OnDead();
+    }
 
+    public void AddHealthChangeEvent(Action<float, float> action)
+    {
+        OnChangeHealth += action;
+    }
+
+    public void RemoveHealthChangeEvent(Action<float, float> action)
+    {
+        OnChangeHealth -= action;
     }
 }

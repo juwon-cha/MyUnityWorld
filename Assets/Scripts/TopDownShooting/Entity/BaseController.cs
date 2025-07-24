@@ -156,5 +156,24 @@ namespace TopDownShooting
                 _weaponHandler?.Attack();
             }
         }
+
+        public virtual void OnDead()
+        {
+            _rigidBody.velocity = Vector3.zero;
+
+            foreach(SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                Color color = renderer.color;
+                color.a = 0.3f;
+                renderer.color = color;
+            }
+
+            foreach(Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+            {
+                component.enabled = false; // 나머지 컴포넌트 비활성화
+            }
+
+            Destroy(gameObject, 2f); // 2초 후에 오브젝트 삭제
+        }
     }
 }

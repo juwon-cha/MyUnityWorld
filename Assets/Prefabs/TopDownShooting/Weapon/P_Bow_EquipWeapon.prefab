@@ -84,10 +84,11 @@ MonoBehaviour:
   _attackRange: 10
   Target:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   _IsOnKnockBack: 1
   _knockBackPower: 0.1
   _knockBackDuration: 0.5
+  AttackSoundClip: {fileID: 8300000, guid: 4096502abfda16d45b34384218ed0089, type: 3}
   _projectileSpawnPosition: {fileID: 8917087402079196345}
   _bulletIndex: 0
   _bulletSize: 0.7
