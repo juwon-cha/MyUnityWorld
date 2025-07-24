@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,6 +9,8 @@ namespace TopDownShooting
     {
         private Camera _camera;
         private GameManager _gameManager;
+
+        public bool IsDead = false;
 
         public void Init(GameManager gameManager)
         {
@@ -46,6 +49,8 @@ namespace TopDownShooting
         public override void OnDead()
         {
             base.OnDead();
+
+            IsDead = true;
 
             _gameManager.GameOver(); // 게임 매니저에 게임 오버 알림
         }

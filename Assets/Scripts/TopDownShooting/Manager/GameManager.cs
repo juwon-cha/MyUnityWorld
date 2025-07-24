@@ -50,6 +50,7 @@ namespace TopDownShooting
 
         public void StartGame()
         {
+            Player.IsDead = false;
             _uiManager.SetPlayGame();
             StartNextWave();
         }

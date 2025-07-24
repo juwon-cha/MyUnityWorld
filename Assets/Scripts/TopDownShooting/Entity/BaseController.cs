@@ -74,6 +74,11 @@ namespace TopDownShooting
 
         protected virtual void Update()
         {
+            if(GameManager.Instance.Player.IsDead)
+            {
+                return; // 플레이어가 죽었다면 업데이트를 중지
+            }
+
             HandleAction();
             Rotate(_lookDirection);
             HandleAttackDelay();
