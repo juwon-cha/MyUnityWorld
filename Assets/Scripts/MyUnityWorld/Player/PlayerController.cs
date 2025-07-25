@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,7 +23,9 @@ namespace MyUnityWorld
 
         protected AnimationHandler _animationHandler;
 
-        protected virtual void Awake()
+        public event Action OnInteractPressed;
+
+        protected void Awake()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
             if (_rigidBody == null)
@@ -40,17 +40,17 @@ namespace MyUnityWorld
             }
         }
 
-        protected virtual void Start()
+        protected void Start()
         {
-
+            InteractionManager.Instance.RegisterPlayer(this); // InteractionManager에 플레이어 등록
         }
 
-        protected virtual void Update()
+        protected void Update()
         {
             Rotate(_movementDirection);
         }
 
-        protected virtual void FixedUpdate()
+        protected void FixedUpdate()
         {
             Movement(_movementDirection);
         }
@@ -83,6 +83,14 @@ namespace MyUnityWorld
         {
             _movementDirection = inputValue.Get<Vector2>(); // InputValue를 사용하여 이동 입력 처리
             _movementDirection = _movementDirection.normalized; // 방향 벡터로 정규화
+        }
+
+        private void OnInteract(InputValue inputValue)
+        {
+            if(inputValue.isPressed)
+            {
+                OnInteractPressed?.Invoke();
+            }
         }
     }
 }

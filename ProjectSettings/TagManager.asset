@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - BackGround
+  - MiniGame
+  - NPC
+  - LeaderBoard
+  - Mirror
   layers:
   - Default
   - TransparentFX
