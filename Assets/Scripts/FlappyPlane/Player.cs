@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace FlappyPlane
 {
@@ -40,33 +41,27 @@ namespace FlappyPlane
 
         void Update()
         {
-            if (IsDead)
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                if (mDeathCooldown <= 0)
-                {
-                    // 게임 재시작
-                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                    {
-                        mGameManager.RestartGame();
-                    }
-                }
-                else
-                {
-                    mDeathCooldown -= Time.deltaTime;
-                }
+                // UI 요소 위에 있을 때는 점프하지 않음
+                return;
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                {
-                    mIsFlap = true;
-                }
+                mIsFlap = true;
             }
         }
 
         private void FixedUpdate()
         {
-            if (IsDead)
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                // UI 요소 위에 있을 때는 점프하지 않음
+                return;
+            }
+
+            if (IsDead || GameManager.Instance.IsGameOver)
             {
                 return;
             }
@@ -101,6 +96,14 @@ namespace FlappyPlane
 
             mAnimator.SetInteger("IsDie", 1);
             mGameManager.GameOver();
+        }
+
+        public void ActivatePlayer()
+        {
+            IsDead = false;
+
+            // Rigidbody를 Dynamic으로 변경하여 물리 효과(중력 등)를 받도록 함
+            mRigidbody.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }
