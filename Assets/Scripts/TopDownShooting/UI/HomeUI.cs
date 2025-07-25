@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TopDownShooting
@@ -25,8 +26,8 @@ namespace TopDownShooting
 
         public void OnClickExitBtn()
         {
-            Application.Quit();
-            // If running in the editor, stop playing
+            GameManager.IsFirstLoading = true;
+            SceneManager.LoadScene("MyUnityWorld");
         }
 
         protected override EUIState GetUIState()

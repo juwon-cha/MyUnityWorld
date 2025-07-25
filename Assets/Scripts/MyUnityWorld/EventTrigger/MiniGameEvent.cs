@@ -33,7 +33,7 @@ namespace MyUnityWorld
                 _miniGameType = EMiniGameType.TOPDOWN_SHOOTING;
             }
             
-            //StartMiniGame(_miniGameType);
+            StartMiniGame(_miniGameType);
         }
 
         private void StartMiniGame(EMiniGameType miniGameType)
@@ -45,6 +45,8 @@ namespace MyUnityWorld
                     break;
 
                 case EMiniGameType.THE_STACK:
+                    // TODO: 해상도 9:16으로 변경
+                    Screen.SetResolution(1080, 1920, true);
                     SceneManager.LoadScene("TheStack");
                     break;
 

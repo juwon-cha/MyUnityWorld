@@ -19,12 +19,13 @@ namespace MyUnityWorld
 
             // 초기 이벤트 구독 설정
             _playerController.OnInteractPressed += _triggerDetection.HandleInteraction;
+            _playerController.OnEnterPressed += _triggerDetection.HandleEnter;
         }
 
         // TriggerDetection이 이 메서드 호출
-        public void StartInteraction(Collider2D interactableObject)
+        public void StartInteraction(Collider2D collision)
         {
-            _dialogueHandler = interactableObject.GetComponent<DialogueHandler>();
+            _dialogueHandler = collision.GetComponent<DialogueHandler>();
             if (_dialogueHandler == null) return;
 
             // 이벤트 구독자 교체
@@ -52,7 +53,7 @@ namespace MyUnityWorld
         }
 
         // TODO: 엔터 입력 시 미니게임 실행/리더보드UI/거울UI 등 다른 이벤트 처리 추가
-        public void StartEnter(Collider2D collision)
+        public void EnterEvent(Collider2D collision)
         {
             _baseEvent = collision.GetComponent<BaseEvent>();
             _baseEvent.StartEvent(collision);

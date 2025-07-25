@@ -1,3 +1,4 @@
+using TopDownShooting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,7 @@ namespace MyUnityWorld
         //    PlayerController playerController = GetComponentInParent<PlayerController>();
         //    if (playerController != null)
         //    {
-        //        playerController.OnInteractPressed += HandleInteraction;
+        //        playerController.OnEnterPressed += HandleEnter;
         //    }
         //}
 
@@ -24,16 +25,30 @@ namespace MyUnityWorld
             if (playerController != null)
             {
                 playerController.OnInteractPressed -= HandleInteraction;
+
+                // 엔터키에 대한 구독 해제
+                playerController.OnEnterPressed -= HandleEnter;
             }
         }
 
-        // 이벤트가 발생했을 때 호출될 메서드
+        // 상호작용이 발생했을 때 호출될 메서드
         public void HandleInteraction()
         {
             // 상호작용 가능한 대상이 범위 안에 있을 때만 로직 실행
             if (_interactableObject != null)
             {
                 InteractionManager.Instance.StartInteraction(_interactableObject);
+            }
+        }
+
+        // 상호작용 중 엔터키를 눌렀을 때 호출될 메서드
+        public void HandleEnter()
+        {
+            // 상호작용 가능한 대상이 범위 안에 있을 때만 로직 실행
+            // TODO: NPC는 엔터키 처리 안되게 처리
+            if (_interactableObject != null)
+            {
+                InteractionManager.Instance.EnterEvent(_interactableObject);
             }
         }
 

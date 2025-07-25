@@ -24,6 +24,7 @@ namespace MyUnityWorld
         protected AnimationHandler _animationHandler;
 
         public event Action OnInteractPressed;
+        public event Action OnEnterPressed;
 
         protected void Awake()
         {
@@ -90,6 +91,14 @@ namespace MyUnityWorld
             if(inputValue.isPressed)
             {
                 OnInteractPressed?.Invoke();
+            }
+        }
+
+        private void OnEnter(InputValue inputValue)
+        {
+            if (inputValue.isPressed)
+            {
+                OnEnterPressed?.Invoke();
             }
         }
     }

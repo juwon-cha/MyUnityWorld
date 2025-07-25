@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 namespace TheStack
@@ -60,11 +61,9 @@ namespace TheStack
 
         public void OnClickExit()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            Screen.SetResolution(1920, 1080, true);
+
+            SceneManager.LoadScene("MyUnityWorld");
         }
 
         public void UpdateScore()

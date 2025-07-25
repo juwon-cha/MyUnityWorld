@@ -26,8 +26,8 @@ namespace TopDownShooting
 
         public void OnClickExitBtn()
         {
-            Application.Quit();
-            // If running in the editor, stop playing
+            GameManager.IsFirstLoading = true;
+            SceneManager.LoadScene("MyUnityWorld");
         }
 
         protected override EUIState GetUIState()

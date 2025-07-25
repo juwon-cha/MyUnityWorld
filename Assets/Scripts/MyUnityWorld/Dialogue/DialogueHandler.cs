@@ -32,29 +32,8 @@ namespace MyUnityWorld
             }
 
             UIManager.Instance.ShowDialogueUI();
+
             StartCoroutine(ShowLines());
-        }
-
-        // F키 입력 처리
-        public void HandleInteraction()
-        {
-            switch(_dialogueState)
-            {
-                case EDialogueState.TYPING:
-                    // 타자기 효과가 진행 중일 때 F키를 누르면 즉시 모든 텍스트를 보여줌
-                    // 코루틴을 중지하고 전체 텍스트를 즉시 표시 (스킵)
-                    StopAllCoroutines();
-                    _dialogueTxt.text = string.Join("\n", _dialogueLines);
-                    _dialogueState = EDialogueState.COMPLETED; // 상태를 '완료'로 변경
-                    break;
-
-                case EDialogueState.COMPLETED:
-                    EndDialogue();
-                    break;
-
-                default:
-                    break;
-            }
         }
 
         private IEnumerator ShowLines()
@@ -80,6 +59,28 @@ namespace MyUnityWorld
 
             // InteractionManager에 대화 종료를 알림(구독 전환)
             InteractionManager.Instance.EndInteraction();
+        }
+
+        // F키 입력 처리
+        public void HandleInteraction()
+        {
+            switch(_dialogueState)
+            {
+                case EDialogueState.TYPING:
+                    // 타자기 효과가 진행 중일 때 F키를 누르면 즉시 모든 텍스트를 보여줌
+                    // 코루틴을 중지하고 전체 텍스트를 즉시 표시 (스킵)
+                    StopAllCoroutines();
+                    _dialogueTxt.text = string.Join("\n", _dialogueLines);
+                    _dialogueState = EDialogueState.COMPLETED; // 상태를 '완료'로 변경
+                    break;
+
+                case EDialogueState.COMPLETED:
+                    EndDialogue();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
