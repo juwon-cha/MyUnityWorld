@@ -49,6 +49,8 @@ namespace MyUnityWorld
             // 다시 TriggerDetection의 구독 추가
             _playerController.OnInteractPressed += _triggerDetection.HandleInteraction;
 
+            // 다이얼로그 UI 비활성화
+            UIManager.Instance.DisableDialogueUI();
             _dialogueHandler = null;
         }
 

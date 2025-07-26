@@ -8,36 +8,42 @@ namespace MyUnityWorld
 {
     public class CustomizingUI : BaseUI
     {
-        [SerializeField] private Image _characterPreview;
-        [SerializeField] private List<ColorSelectButton> _colorSelectButtons;
+        [SerializeField] private Button _colorSelectButton;
+        [SerializeField] private Button _customizeButton;
+        [SerializeField] private Button _rideButton;
+        [SerializeField] private Button _exitButton;
 
         protected override EUIState GetUIState()
         {
             return EUIState.CUSTOMIZING;
         }
 
-        private void Start()
+        public void Awake()
         {
-            var inst = Instantiate(_characterPreview.material);
-            _characterPreview.material = inst;
+            _colorSelectButton.onClick.AddListener(OnClickColorSelectButton);
+            _customizeButton.onClick.AddListener(OnClickCustomizeButton);
+            _rideButton.onClick.AddListener(OnClickRideButton);
+            _exitButton.onClick.AddListener(OnClickExitButton);
         }
 
-        public void UpdateColorButton()
+        public void OnClickColorSelectButton()
         {
 
         }
 
-        public void UpdatePreviewColor(/*EPlayerColor color*/)
+        public void OnClickCustomizeButton()
         {
-            if (_characterPreview != null && _characterPreview.material != null)
-            {
-                //_characterPreview.material.SetColor("_PlayerColor", PlayerColor.GetColor(color));
-            }
+
         }
 
-        public void OnClickColorButton(int index)
+        public void OnClickRideButton()
         {
 
+        }
+
+        public void OnClickExitButton()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

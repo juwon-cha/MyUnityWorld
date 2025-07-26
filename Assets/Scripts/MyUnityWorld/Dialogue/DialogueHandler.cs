@@ -16,7 +16,6 @@ namespace MyUnityWorld
     public class DialogueHandler : MonoBehaviour
     {
         [SerializeField] private List<string> _dialogueLines = new List<string>();
-        [SerializeField] private DialogueUI _dialogueUI;
         [SerializeField] private TextMeshProUGUI _dialogueTxt;
         [SerializeField] private float _typingSpeed = 0.05f; // 타자기 효과 속도
 
@@ -25,12 +24,6 @@ namespace MyUnityWorld
         // 다이얼로그 시작
         public void StartDialogue()
         {
-            // 이미 다이얼로그가 실행 중이면 중복 실행 방지
-            if (_dialogueUI.gameObject.activeSelf)
-            {
-                return;
-            }
-
             UIManager.Instance.ShowDialogueUI();
 
             StartCoroutine(ShowLines());
