@@ -19,14 +19,16 @@ namespace MyUnityWorld
 
             // 초기 이벤트 구독 설정
             _playerController.OnInteractPressed += _triggerDetection.HandleInteraction;
-            _playerController.OnEnterPressed += _triggerDetection.HandleEnter;
         }
 
         // TriggerDetection이 이 메서드 호출
         public void StartInteraction(Collider2D collision)
         {
             _dialogueHandler = collision.GetComponent<DialogueHandler>();
-            if (_dialogueHandler == null) return;
+            if (_dialogueHandler == null)
+            {
+                return;
+            }
 
             // 이벤트 구독자 교체
             // 기존 TriggerDetection의 구독을 해제
@@ -34,14 +36,20 @@ namespace MyUnityWorld
             // 새로운 DialogueHandler의 구독을 추가
             _playerController.OnInteractPressed += _dialogueHandler.HandleInteraction;
 
+            // 대화 UI가 활성화되었을 때 Enter키 이벤트를 처리하도록 설정
+            _playerController.OnEnterPressed += _triggerDetection.HandleEnter;
+
             // 다이얼로그 시작
             _dialogueHandler.StartDialogue();
         }
 
-        // DialogueHandler가 다이얼로그 종료 시 이 메서드 호출
+        // UIManager에서 메인 화면으로 돌아갈 때 이 메서드 호출(상호작용 종료)
         public void EndInteraction()
         {
-            if (_dialogueHandler == null) return;
+            if (_dialogueHandler == null)
+            {
+                return;
+            }
 
             // 이벤트 구독자 복구
             // DialogueHandler의 구독 해제
@@ -49,12 +57,14 @@ namespace MyUnityWorld
             // 다시 TriggerDetection의 구독 추가
             _playerController.OnInteractPressed += _triggerDetection.HandleInteraction;
 
+            // 대화 상호작용이 끝나면 Enter키 이벤트 구독 해제
+            _playerController.OnEnterPressed -= _triggerDetection.HandleEnter;
+
             // 다이얼로그 UI 비활성화
-            UIManager.Instance.DisableDialogueUI();
             _dialogueHandler = null;
         }
 
-        // TODO: 엔터 입력 시 미니게임 실행/리더보드UI/거울UI 등 다른 이벤트 처리 추가
+        // 엔터키 이벤트 처리
         public void EnterEvent(Collider2D collision)
         {
             _baseEvent = collision.GetComponent<BaseEvent>();

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace MyUnityWorld
 {
-    enum EDialogueState
+    public enum EDialogueState
     {
         NONE,
         TYPING,
@@ -24,7 +24,8 @@ namespace MyUnityWorld
         // 다이얼로그 시작
         public void StartDialogue()
         {
-            UIManager.Instance.ShowDialogueUI();
+            // 대화 UI 활성화
+            UIManager.Instance.SetDialogueUI();
 
             StartCoroutine(ShowLines());
         }
@@ -48,10 +49,12 @@ namespace MyUnityWorld
         private void EndDialogue()
         {
             StopAllCoroutines();
-            UIManager.Instance.DisableDialogueUI();
 
             // InteractionManager에 대화 종료를 알림(구독 전환)
-            InteractionManager.Instance.EndInteraction();
+            //InteractionManager.Instance.EndInteraction();
+
+            // 메인 게임 화면으로 돌아감
+            UIManager.Instance.SetDefaultUIState();
         }
 
         // F키 입력 처리

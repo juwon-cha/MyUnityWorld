@@ -13,40 +13,54 @@ namespace MyUnityWorld
         DIALOGUE,
         GAME,
         CUSTOMIZING,
-        COLOR_SELECT,
         LEADERBOARD,
     }
 
     public class UIManager : Singleton<UIManager>
     {
-        [SerializeField] private DialogueUI _dialogueUI;
         [SerializeField] private GameUI _gameUI;
+        [SerializeField] private DialogueUI _dialogueUI;
         [SerializeField] private CustomizingUI _customizingUI;
+        [SerializeField] private LeaderBoardUI _leaderboardUI;
 
-        private EUIState _currentState;
+        public DialogueUI DialogueUI { get => _dialogueUI; private set => _dialogueUI = value; }
+        public CustomizingUI CustomizingUI { get => _customizingUI; private set => _customizingUI = value; }
+        public LeaderBoardUI LeaderboardUI { get => _leaderboardUI; private set => _leaderboardUI = value; }
 
-        private void Awake()
+        public EUIState CurrentState { get; private set; } = EUIState.NONE;
+
+        public void SetDefaultUIState()
         {
-            ChangeState(EUIState.GAME);
+            ChangeState(EUIState.NONE);
         }
 
-        public void ShowDialogueUI()
+        public void SetDialogueUI()
         {
-            _dialogueUI.SetActive(EUIState.DIALOGUE);
+            ChangeState(EUIState.DIALOGUE);
         }
 
-        public void DisableDialogueUI()
+        public void SetCustomizingUI()
         {
-            if (_dialogueUI != null)
-            {
-                _dialogueUI.SetActive(EUIState.NONE);
-            }
+            ChangeState(EUIState.CUSTOMIZING);
+        }
+
+        public void SetLeaderBoardUI()
+        {
+            ChangeState(EUIState.LEADERBOARD);
         }
 
         public void ChangeState(EUIState state)
         {
-            _currentState = state;
-            _dialogueUI?.SetActive(_currentState);
+            CurrentState = state;
+            DialogueUI?.SetActive(CurrentState);
+            CustomizingUI?.SetActive(CurrentState);
+            LeaderboardUI?.SetActive(CurrentState);
+            
+            // UI 상태가 기본으로 돌아갈 때, 모든 상호작용 정리
+            if(CurrentState == EUIState.NONE)
+            {
+                InteractionManager.Instance.EndInteraction();
+            }
         }
     }
 }

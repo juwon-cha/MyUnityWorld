@@ -9,21 +9,13 @@ namespace MyUnityWorld
         private Collider2D _interactableObject; // 상호작용 가능한 대상
         private GameObject _pressPopUp;
 
-        //private void Awake()
-        //{
-        //    PlayerController playerController = GetComponentInParent<PlayerController>();
-        //    if (playerController != null)
-        //    {
-        //        playerController.OnEnterPressed += HandleEnter;
-        //    }
-        //}
-
         private void OnDestroy()
         {
             // 오브젝트가 파괴될 때 이벤트 구독 해제
             PlayerController playerController = GetComponentInParent<PlayerController>();
             if (playerController != null)
             {
+                // 상호작용(F키)에 대한 구독 해제
                 playerController.OnInteractPressed -= HandleInteraction;
 
                 // 엔터키에 대한 구독 해제
@@ -34,8 +26,8 @@ namespace MyUnityWorld
         // 상호작용이 발생했을 때 호출될 메서드
         public void HandleInteraction()
         {
-            // 상호작용 가능한 대상이 범위 안에 있을 때만 로직 실행
-            if (_interactableObject != null)
+            // 현재 UI 상태가 NONE이거나 상호작용 가능한 대상이 있을 때만 상호작용 시작
+            if (_interactableObject != null || UIManager.Instance.CurrentState == EUIState.NONE)
             {
                 InteractionManager.Instance.StartInteraction(_interactableObject);
             }
@@ -75,10 +67,10 @@ namespace MyUnityWorld
             {
                 _pressPopUp.SetActive(false);
                 _pressPopUp = null;
-
-                // 저장된 상호작용 대상을 초기화
-                _interactableObject = null;
             }
+
+            // 저장된 상호작용 대상을 초기화
+            _interactableObject = null;
         }
     }
 }

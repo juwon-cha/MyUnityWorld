@@ -10,11 +10,8 @@ namespace MyUnityWorld
 
         public override void StartEvent(Collider2D collision)
         {
-            // 다이얼로그 UI 비활성화
-            InteractionManager.Instance.EndInteraction();
-
             // 커스터마이징 UI 활성화
-            _leaderBoardUI.gameObject.SetActive(true);
+            UIManager.Instance.SetLeaderBoardUI();
         }
     }
 }

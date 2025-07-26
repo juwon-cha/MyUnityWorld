@@ -10,5 +10,10 @@ namespace MyUnityWorld
         {
             return EUIState.DIALOGUE;
         }
+
+        public void HideDialogueUI()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

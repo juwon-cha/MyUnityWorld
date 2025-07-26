@@ -7,15 +7,10 @@ using UnityEngine.UI;
 
 namespace MyUnityWorld
 {
-    public class ColorSelectUI : BaseUI
+    public class CustomizeSelectUI : MonoBehaviour
     {
         [SerializeField] private Image _characterPreview;
         [SerializeField] private List<ColorSelectButton> _colorSelectButtons;
-
-        protected override EUIState GetUIState()
-        {
-            return EUIState.COLOR_SELECT;
-        }
 
         private void Awake()
         {
