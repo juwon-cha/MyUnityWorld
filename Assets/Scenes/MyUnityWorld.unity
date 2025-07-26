@@ -3579,6 +3579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 614006198}
+  - component: {fileID: 614006199}
   m_Layer: 5
   m_Name: LeaderBoardUI
   m_TagString: Untagged
@@ -3606,6 +3607,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &614006199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614006197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f935367a2c8bdcc47bdb6e2c1a5370db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flappyPlaneButton: {fileID: 1630191816}
+  _theStackButton: {fileID: 1955854745}
+  _TopdownButton: {fileID: 1778705622}
+  _exitButton: {fileID: 2139247628}
 --- !u!1 &640039590
 GameObject:
   m_ObjectHideFlags: 0
@@ -7221,6 +7238,7 @@ GameObject:
   - component: {fileID: 989833285}
   - component: {fileID: 989833286}
   - component: {fileID: 989833287}
+  - component: {fileID: 989833288}
   m_Layer: 0
   m_Name: LeaderBoard
   m_TagString: LeaderBoard
@@ -7307,6 +7325,19 @@ MonoBehaviour:
   - "\uCD5C\uACE0\uC810\uC218\uB97C \uD655\uC778\uD560 \uC218 \uC788\uC5B4."
   _dialogueTxt: {fileID: 1331803161}
   _typingSpeed: 0.05
+--- !u!114 &989833288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989833284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03b6697ece3c414e84c0985a67ba70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leaderBoardUI: {fileID: 614006199}
 --- !u!1 &1002583183
 GameObject:
   m_ObjectHideFlags: 0
