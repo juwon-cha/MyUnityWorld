@@ -56,6 +56,18 @@ namespace MyUnityWorld
             Movement(_movementDirection);
         }
 
+        public void ChangeColor(Color color)
+        {
+            if(_characterRenderer != null)
+            {
+                _characterRenderer.color = color; // 캐릭터의 색상을 변경
+            }
+            else
+            {
+                Debug.LogError("Character Renderer is not assigned.");
+            }
+        }
+
         private void Movement(Vector2 direction)
         {
             direction *= Speed;

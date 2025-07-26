@@ -12,12 +12,16 @@ namespace MyUnityWorld
         NONE,
         DIALOGUE,
         GAME,
+        CUSTOMIZING,
+        COLOR_SELECT,
+        LEADERBOARD,
     }
 
     public class UIManager : Singleton<UIManager>
     {
         [SerializeField] private DialogueUI _dialogueUI;
         [SerializeField] private GameUI _gameUI;
+        [SerializeField] private CustomizingUI _customizingUI;
 
         private EUIState _currentState;
 
