@@ -29,7 +29,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         // 해당 오브젝트가 자식 오브젝트라면
         if (transform.parent != null && transform.root != null)

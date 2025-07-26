@@ -29,6 +29,15 @@ namespace MyUnityWorld
 
         public EUIState CurrentState { get; private set; } = EUIState.NONE;
 
+        // 미니게임에서 복귀했을 때 UI들을 초기화
+        public void OnEnable()
+        {
+            _gameUI = FindObjectOfType<GameUI>(true);
+            _dialogueUI = FindObjectOfType<DialogueUI>(true);
+            _customizingUI = FindObjectOfType<CustomizingUI>(true);
+            _leaderboardUI = FindObjectOfType<LeaderBoardUI>(true);
+        }
+
         public void SetDefaultUIState()
         {
             ChangeState(EUIState.NONE);

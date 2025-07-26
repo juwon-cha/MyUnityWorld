@@ -13,6 +13,8 @@ namespace MyUnityWorld
 
         public void RegisterPlayer(PlayerController player)
         {
+            UIManager.Instance.SetDefaultUIState(); // UI 상태 초기화
+
             _playerController = player;
             // TriggerDetection은 Player의 자식
             _triggerDetection = player.GetComponentInChildren<TriggerDetection>();

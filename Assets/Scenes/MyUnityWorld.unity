@@ -473,7 +473,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146015560}
   m_CullTransparentMesh: 1
---- !u!1 &203079151
+--- !u!1 &191947842
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,8 +481,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 203079153}
-  - component: {fileID: 203079152}
+  - component: {fileID: 191947844}
+  - component: {fileID: 191947843}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -490,13 +490,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &203079152
+--- !u!114 &191947843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203079151}
+  m_GameObject: {fileID: 191947842}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 657a1186a5a04c44fb509ab28e4fb2c6, type: 3}
@@ -506,13 +506,13 @@ MonoBehaviour:
   _dialogueUI: {fileID: 273624832}
   _customizingUI: {fileID: 865988576}
   _leaderboardUI: {fileID: 614006199}
---- !u!4 &203079153
+--- !u!4 &191947844
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203079151}
+  m_GameObject: {fileID: 191947842}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3907,7 +3907,7 @@ GameObject:
   - component: {fileID: 668386854}
   - component: {fileID: 668386855}
   m_Layer: 5
-  m_Name: ColorSelectUI
+  m_Name: CustomSelectUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19322,4 +19322,4 @@ SceneRoots:
   - {fileID: 1059642001}
   - {fileID: 459783521}
   - {fileID: 1823078139}
-  - {fileID: 203079153}
+  - {fileID: 191947844}
