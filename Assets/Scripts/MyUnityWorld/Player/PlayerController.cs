@@ -39,6 +39,8 @@ namespace MyUnityWorld
             {
                 Debug.LogError("AnimationHandler component is missing on " + gameObject.name);
             }
+
+            GameManager.Instance.LoadPlayerCoordinates(); // 게임 시작 시 플레이어 좌표 불러오기
         }
 
         protected void Start()
@@ -54,6 +56,8 @@ namespace MyUnityWorld
         protected void FixedUpdate()
         {
             Movement(_movementDirection);
+
+            GameManager.Instance.SavePlayerCoordinates(); // 매 프레임마다 플레이어 좌표 저장
         }
 
         public void ChangeColor(Color color)

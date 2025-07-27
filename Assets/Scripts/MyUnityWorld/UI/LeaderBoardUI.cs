@@ -13,6 +13,8 @@ namespace MyUnityWorld
         [SerializeField] private Button _TopdownButton;
         [SerializeField] private Button _exitButton;
 
+        [SerializeField] private ScoreBoardUI _scoreBoardUI;
+
         protected override EUIState GetUIState()
         {
             return EUIState.LEADERBOARD;
@@ -35,15 +37,17 @@ namespace MyUnityWorld
 
         public void OnClickFlappyPlaneButton()
         {
-
+            _scoreBoardUI.UpdateScore(GameData.FlappyPlaneBest);
         }
 
         public void OnClickTheStackButton()
         {
+            _scoreBoardUI.UpdateScore(GameData.TheStackBest);
         }
 
         public void OnClickTopDownButton()
         {
+            _scoreBoardUI.UpdateScore(GameData.TopDownBest);
         }
 
         public void OnClickExitButton()

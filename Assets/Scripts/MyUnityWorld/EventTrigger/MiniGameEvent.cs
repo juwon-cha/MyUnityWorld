@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -45,8 +46,8 @@ namespace MyUnityWorld
                     break;
 
                 case EMiniGameType.THE_STACK:
-                    // TODO: 해상도 9:16으로 변경
-                    Screen.SetResolution(1080, 1920, true);
+                    // 해상도 9:16으로 변경(에디터 모드에서는 적용되지 않음)
+                    //Screen.SetResolution(1080, 1920, true);
                     SceneManager.LoadScene("TheStack");
                     break;
 

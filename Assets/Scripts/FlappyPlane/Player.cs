@@ -13,7 +13,6 @@ namespace FlappyPlane
         public float FlapForce = 6f; // 점프하는 힘
         public float ForwardSpeed = 3f; // 앞으로 이동하는 속도
         public bool IsDead = false; // 플레이어가 죽었는지 여부
-        private float mDeathCooldown = 0.5f; // 충돌 후 바로 죽는게 아니라 0.5초 후에 죽도록 설정
 
         private bool mIsFlap = false; // 플레이어가 점프 중인지 여부
 
@@ -92,7 +91,6 @@ namespace FlappyPlane
             }
 
             IsDead = true;
-            mDeathCooldown = 1f;
 
             mAnimator.SetInteger("IsDie", 1);
             mGameManager.GameOver();

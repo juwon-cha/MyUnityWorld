@@ -17,8 +17,19 @@ namespace MyUnityWorld
                 return;
             }
 
-            mOffsetX = transform.position.x - Target.position.x;
-            mOffsetX = transform.position.y - Target.position.y;
+            mOffsetX = Target.position.x;
+            mOffsetX = Target.position.y;
+        }
+
+        private void OnEnable()
+        {
+            if (Target == null)
+            {
+                return;
+            }
+
+            mOffsetX = Target.position.x;
+            mOffsetX = Target.position.y;
         }
 
         void LateUpdate()
@@ -29,8 +40,8 @@ namespace MyUnityWorld
             }
 
             Vector3 pos = transform.position;
-            pos.x = Target.position.x + mOffsetX;
-            pos.y = Target.position.y + mOffsetY;
+            pos.x = Target.position.x;
+            pos.y = Target.position.y;
             transform.position = pos;
         }
     }

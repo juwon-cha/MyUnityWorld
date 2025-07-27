@@ -12,6 +12,12 @@ namespace TopDownShooting
         [SerializeField] private Button _restartBtn;
         [SerializeField] private Button _exitBtn;
 
+        public void OnEnable()
+        {
+            // 최고 점수(웨이브) 저장
+            GameManager.Instance.UpdateBestScore();
+        }
+
         public override void Init(UIManager uiManager)
         {
             base.Init(uiManager);

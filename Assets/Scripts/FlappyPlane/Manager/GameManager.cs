@@ -17,6 +17,8 @@ namespace FlappyPlane
         [SerializeField] private Player _player;
 
         private int mCurrentScore = 0;
+        public int BestScore { get; private set; }
+
         public bool IsGameOver { get; private set; } = true;
         public static bool IsFirstLoading = true;
 
@@ -59,6 +61,34 @@ namespace FlappyPlane
             mCurrentScore += score;
             Debug.Log($"Score: {mCurrentScore}");
             mUIManager.UpdateScore(mCurrentScore);
+        }
+
+        public void UpdateBestScore()
+        {
+            if (mCurrentScore > BestScore)
+            {
+                BestScore = mCurrentScore;
+            }
+
+            string flappyPlaneBest = GameData.FlappyPlaneBest;
+
+            // 기존 최고 점수와 비교하여 갱신
+            for (int i = 0; i < flappyPlaneBest.Length; i++)
+            {
+                int score = flappyPlaneBest[i] - '0';
+
+                if (BestScore > score)
+                {
+                    // 현재 최고 점수가 기존 최고 점수보다 높으면 갱신
+                    flappyPlaneBest = flappyPlaneBest.Insert(i, BestScore.ToString());
+
+                    // 최고 점수 7개까지만 저장
+                    flappyPlaneBest = flappyPlaneBest.Remove(flappyPlaneBest.Length - 1);
+                    break;
+                }
+            }
+
+            PlayerPrefs.SetString("FlappyPlaneBest", flappyPlaneBest);
         }
     }
 }

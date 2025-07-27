@@ -14,6 +14,10 @@ namespace MyUnityWorld
         [SerializeField] private Button _rideButton;
         [SerializeField] private Button _exitButton;
 
+        private GameObject _colorBoard;
+        private GameObject _equipmentBoard;
+        private GameObject _rideBoard;
+
         protected override EUIState GetUIState()
         {
             return EUIState.CUSTOMIZING;
@@ -25,6 +29,11 @@ namespace MyUnityWorld
             _customizeButton.onClick.AddListener(OnClickCustomizeButton);
             _rideButton.onClick.AddListener(OnClickRideButton);
             _exitButton.onClick.AddListener(OnClickExitButton);
+
+            GameObject selectUI = gameObject.GetComponentInChildren<CustomizeSelectUI>(true).gameObject;
+            _colorBoard = selectUI.transform.Find("ColorBoard").gameObject;
+            _equipmentBoard = selectUI.transform.Find("EquipmentBoard").gameObject;
+            _rideBoard = selectUI.transform.Find("RideBoard").gameObject;
         }
 
         // 나가기 버튼을 누르고 다시 UI를 활성화 시키면 Enter 입력 충돌로 바로 UI가 꺼지는 문제를 방지하기 위해
@@ -36,17 +45,23 @@ namespace MyUnityWorld
 
         public void OnClickColorSelectButton()
         {
-
+            _colorBoard.SetActive(true);
+            _equipmentBoard.SetActive(false);
+            _rideBoard.SetActive(false);
         }
 
         public void OnClickCustomizeButton()
         {
-
+            _colorBoard.SetActive(false);
+            _equipmentBoard.SetActive(true);
+            _rideBoard.SetActive(false);
         }
 
         public void OnClickRideButton()
         {
-
+            _colorBoard.SetActive(false);
+            _equipmentBoard.SetActive(false);
+            _rideBoard.SetActive(true);
         }
 
         public void OnClickExitButton()
