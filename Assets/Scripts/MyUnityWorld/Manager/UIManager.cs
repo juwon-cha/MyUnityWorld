@@ -11,14 +11,12 @@ namespace MyUnityWorld
     {
         NONE,
         DIALOGUE,
-        GAME,
         CUSTOMIZING,
         LEADERBOARD,
     }
 
     public class UIManager : Singleton<UIManager>
     {
-        [SerializeField] private GameUI _gameUI;
         [SerializeField] private DialogueUI _dialogueUI;
         [SerializeField] private CustomizingUI _customizingUI;
         [SerializeField] private LeaderBoardUI _leaderboardUI;
@@ -32,7 +30,6 @@ namespace MyUnityWorld
         // 미니게임에서 복귀했을 때 UI들을 초기화
         public void OnEnable()
         {
-            _gameUI = FindObjectOfType<GameUI>(true);
             _dialogueUI = FindObjectOfType<DialogueUI>(true);
             _customizingUI = FindObjectOfType<CustomizingUI>(true);
             _leaderboardUI = FindObjectOfType<LeaderBoardUI>(true);

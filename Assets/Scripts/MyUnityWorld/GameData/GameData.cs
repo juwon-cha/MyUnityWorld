@@ -12,6 +12,12 @@ public static class GameData
     // 게임 전체에서 공유될 선택된 색상의 인덱스
     public static int SelectedColorIndex = -1;
 
+    // 선택된 장비의 인덱스
+    public static int SelectedEquipmentIndex = -1;
+
+    // 선택된 탈것의 인덱스
+    public static int SelectedRideIndex = -1;
+
     // 미니 게임 최고 점수
     // 리더보드에서 상위 7개 점수만 표시
     public static string FlappyPlaneBest;

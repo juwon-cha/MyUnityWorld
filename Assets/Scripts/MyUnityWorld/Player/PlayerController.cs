@@ -9,6 +9,8 @@ namespace MyUnityWorld
         protected Rigidbody2D _rigidBody;
 
         [SerializeField] private SpriteRenderer _characterRenderer;
+        [SerializeField] private SpriteRenderer _equipmentRenderer;
+        private EquipmentHandler _equipmentHandler;
 
         // 이동 방향
         protected Vector2 _movementDirection = Vector2.zero;
@@ -20,6 +22,8 @@ namespace MyUnityWorld
             get => _speed;
             set => _speed = Mathf.Clamp(value, 0f, 20.0f);
         }
+
+        bool _isFacingLeft = false; // 캐릭터가 왼쪽을 바라보고 있는지 여부
 
         protected AnimationHandler _animationHandler;
 
@@ -72,6 +76,28 @@ namespace MyUnityWorld
             }
         }
 
+        public void ChangeEquipment(Sprite equipmentSprite)
+        {
+            if (_characterRenderer != null)
+            {
+                // 캐릭터의 장비 활성화
+                if (_equipmentRenderer != null)
+                {
+                    _equipmentRenderer.gameObject.SetActive(true); // 장비 오브젝트 활성화
+                    _equipmentRenderer.sprite = equipmentSprite; // 장비 스프라이트 변경
+                    _equipmentHandler = _characterRenderer.GetComponentInChildren<EquipmentHandler>();
+                }
+                else
+                {
+                    Debug.LogWarning("_equipmentRenderer component not found on character renderer.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Character Renderer is not assigned.");
+            }
+        }
+
         private void Movement(Vector2 direction)
         {
             direction *= Speed;
@@ -90,9 +116,17 @@ namespace MyUnityWorld
             if (_movementDirection.x != 0)
             {
                 // 이동 방향에 따라 캐릭터의 방향을 결정
-                bool isFacingLeft = direction.x < 0;
+                _isFacingLeft = direction.x < 0;
 
-                _characterRenderer.flipX = isFacingLeft; // 왼쪽을 바라보면 flipX를 true로 설정
+                // 캐릭터의 로컬 스케일을 조절하여 전체 뒤집기
+                if (_isFacingLeft)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
             }
         }
 

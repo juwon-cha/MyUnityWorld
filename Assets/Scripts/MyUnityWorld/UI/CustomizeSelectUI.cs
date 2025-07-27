@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +7,10 @@ namespace MyUnityWorld
     public class CustomizeSelectUI : MonoBehaviour
     {
         [SerializeField] private Image _characterPreview;
+        [SerializeField] private RectTransform _equipmentPreview;
+        [SerializeField] private RectTransform _ridePreview;
         [SerializeField] private List<ColorSelectButton> _colorSelectButtons;
+        [SerializeField] private List<EquipmentSelectButton> _equipmentSelectButtons;
 
         private void Awake()
         {
@@ -23,6 +23,14 @@ namespace MyUnityWorld
                 Button button = _colorSelectButtons[index].GetComponent<Button>();
                 button.onClick.AddListener(() => OnClickColorButton(index));
             }
+
+            for (int i = 0; i < _equipmentSelectButtons.Count; i++)
+            {
+                int index = i;
+
+                Button button = _equipmentSelectButtons[index].GetComponent<Button>();
+                button.onClick.AddListener(() => OnClickEquipButton(index));
+            }
         }
 
         private void OnEnable()
@@ -30,9 +38,13 @@ namespace MyUnityWorld
             UpdateColorButton(GameData.SelectedColorIndex);
         }
 
+        #region 색상 선택
         public void UpdateColorButton(int selectedIndex)
         {
-            if (selectedIndex < 0 || selectedIndex >= _colorSelectButtons.Count) return;
+            if (selectedIndex < 0 || selectedIndex >= _colorSelectButtons.Count)
+            {
+                return;
+            }
 
             // 모든 버튼을 순회하며 선택 상태를 업데이트
             for (int i = 0; i < _colorSelectButtons.Count; i++)
@@ -75,5 +87,71 @@ namespace MyUnityWorld
             // 변경된 인덱스를 기반으로 UI 상태를 즉시 업데이트
             UpdateColorButton(index);
         }
+        #endregion
+
+        #region 장비 선택
+        public void UpdateEquipButton(int selectedIndex)
+        {
+            if (selectedIndex < 0 || selectedIndex >= _equipmentSelectButtons.Count)
+            {
+                return;
+            }
+
+            // TEMP
+            if (selectedIndex >= 3 && selectedIndex < _equipmentSelectButtons.Count)
+            {
+                _equipmentPreview.gameObject.SetActive(false);
+                GameManager.Instance.UpdateCharacterEquipment(null, -1);
+
+                // 체크 표시 해제
+                for (int i = 0; i < _equipmentSelectButtons.Count; i++)
+                {
+                    _equipmentSelectButtons[i].SetInteractable(false);
+                }
+
+                return;
+            }
+
+            // 모든 버튼을 순회하며 선택 상태를 업데이트
+            for (int i = 0; i < _equipmentSelectButtons.Count; i++)
+            {
+                // 현재 인덱스가 선택된 인덱스와 같으면 true, 아니면 false
+                _equipmentSelectButtons[i].SetInteractable(i == selectedIndex);
+            }
+
+            // 프리뷰 이미지 업데이트
+            EquipmentHandler equip = _equipmentSelectButtons[selectedIndex].gameObject.GetComponentInChildren<EquipmentHandler>();
+            UpdatePreviewEquipment(equip.EquipmentRenderer.sprite);
+
+            // 인게임 캐릭터 장비 업데이트
+            GameManager.Instance.UpdateCharacterEquipment(equip.EquipmentRenderer.sprite, selectedIndex);
+        }
+
+        public void UpdatePreviewEquipment(Sprite sprite)
+        {
+            if (_characterPreview != null)
+            {
+                _equipmentPreview.gameObject.SetActive(true);
+
+                Image previewImage = _equipmentPreview.GetComponent<Image>();
+                previewImage.sprite = sprite;
+            }
+        }
+
+        public void OnClickEquipButton(int index)
+        {
+            if (index < 0 || index >= _colorSelectButtons.Count)
+            {
+                Debug.LogError("잘못된 버튼 인덱스입니다: " + index);
+                return;
+            }
+
+            // 선택한 색상 버튼의 인덱스 저장
+            GameData.SelectedEquipmentIndex = index;
+
+            // 변경된 인덱스를 기반으로 UI 상태를 즉시 업데이트
+            UpdateEquipButton(index);
+        }
+        #endregion
     }
 }

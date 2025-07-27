@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EquipmentSelectButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _selectedIndicator;
 
-    // Update is called once per frame
-    void Update()
+    public bool IsInteractable = true;
+
+    public void SetInteractable(bool isInteractable)
     {
-        
+        IsInteractable = isInteractable;
+        _selectedIndicator.SetActive(isInteractable);
     }
 }
