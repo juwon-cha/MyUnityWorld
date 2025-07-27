@@ -71,6 +71,24 @@ namespace MyUnityWorld
             }
         }
 
+        public void UpdateCharacterRide(RideHandler handler, int index)
+        {
+            if(handler == null)
+            {
+                _playerController.RemoveRide();
+                return;
+            }
+
+            if (_playerController != null)
+            {
+                _playerController.ChangeRide(handler);
+            }
+            else
+            {
+                Debug.LogError("PlayerController is not assigned in GameManager.");
+            }
+        }
+
         public void LoadBestScores()
         {
             // PlayerPrefs에서 최고 점수 문자열 불러옴

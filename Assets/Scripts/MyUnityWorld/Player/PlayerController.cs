@@ -10,12 +10,15 @@ namespace MyUnityWorld
 
         [SerializeField] private SpriteRenderer _characterRenderer;
         [SerializeField] private SpriteRenderer _equipmentRenderer;
+        [SerializeField] private SpriteRenderer _rideRenderer;
         private EquipmentHandler _equipmentHandler;
+        private RideHandler _rideHandler;
 
         // 이동 방향
         protected Vector2 _movementDirection = Vector2.zero;
         public Vector2 MovementDirection { get { return _movementDirection; } }
 
+        private float _baseSpeed;
         [Range(1, 20)][SerializeField] private float _speed = 3.0f;
         public float Speed
         {
@@ -45,6 +48,8 @@ namespace MyUnityWorld
             }
 
             GameManager.Instance.LoadPlayerCoordinates(); // 게임 시작 시 플레이어 좌표 불러오기
+
+            _baseSpeed = _speed; // 기본 속도 저장
         }
 
         protected void Start()
@@ -96,6 +101,43 @@ namespace MyUnityWorld
             {
                 Debug.LogError("Character Renderer is not assigned.");
             }
+        }
+
+        public void ChangeRide(RideHandler handler)
+        {
+            if (_characterRenderer != null)
+            {
+                // 캐릭터 탈것 활성화
+                if (_rideRenderer != null)
+                {
+                    _rideRenderer.gameObject.SetActive(true); // 장비 오브젝트 활성화
+                    _rideRenderer.sprite = handler.RideRenderer.sprite; // 장비 스프라이트 변경
+                    _rideHandler = _characterRenderer.GetComponentInChildren<RideHandler>();
+                }
+                else
+                {
+                    Debug.LogWarning("_rideRenderer component not found on character renderer.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Character Renderer is not assigned.");
+            }
+
+            float bonusSpeed = handler.Speed;
+            Speed = _baseSpeed + bonusSpeed; // 탈것의 속도를 추가하여 플레이어 속도 증가
+        }
+
+        public void RemoveRide()
+        {
+            if (_rideRenderer != null)
+            {
+                _rideRenderer.gameObject.SetActive(false); // 탈것 스프라이트 비활성화
+                _rideRenderer.sprite = null;
+            }
+
+            _rideHandler = null;
+            Speed = _baseSpeed; // 속도를 기본 속도로 복원
         }
 
         private void Movement(Vector2 direction)
