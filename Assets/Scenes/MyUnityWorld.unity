@@ -4898,7 +4898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ac173452bed054f8115b746c7c6b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1774780761}
+  _tilemap: {fileID: 672291002}
+  _target: {fileID: 1774780761}
+  _smoothSpeed: 5
 --- !u!1 &459783518
 GameObject:
   m_ObjectHideFlags: 0
@@ -22944,7 +22946,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
