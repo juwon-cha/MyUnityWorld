@@ -21,7 +21,6 @@ public static class GameData
     // 미니 게임 최고 점수
     // 리더보드에서 상위 7개 점수만 표시
     public static string FlappyPlaneBest;
-    public static string TheStackBest;
     public static string TopDownBest;
 
     public static void UpdateBestScore(int score, string miniGameScores, string key)
@@ -41,7 +40,7 @@ public static class GameData
         // 리스트 내림차순 정렬
         scoreList.Sort((a, b) => b.CompareTo(a));
 
-        // 리스트 크기를 최대 7개로 제한합
+        // 리스트 크기를 최대 7개로 제한
         const int maxScores = 7;
         if (scoreList.Count > maxScores)
         {

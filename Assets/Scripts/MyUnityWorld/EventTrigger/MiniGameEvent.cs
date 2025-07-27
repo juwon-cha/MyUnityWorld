@@ -11,7 +11,6 @@ namespace MyUnityWorld
         enum EMiniGameType
         {
             FLAPPY_PLANE,
-            THE_STACK,
             TOPDOWN_SHOOTING,
         }
 
@@ -27,11 +26,11 @@ namespace MyUnityWorld
             }
             else if (name == "MiniGame1")
             {
-                _miniGameType = EMiniGameType.THE_STACK;
-            }
-            else if (name == "MiniGame2")
-            {
                 _miniGameType = EMiniGameType.TOPDOWN_SHOOTING;
+            }
+            else if(name == "MiniGame2")
+            {
+                return;
             }
             
             StartMiniGame(_miniGameType);
@@ -43,12 +42,6 @@ namespace MyUnityWorld
             {
                 case EMiniGameType.FLAPPY_PLANE:
                     SceneManager.LoadScene("FlappyPlane");
-                    break;
-
-                case EMiniGameType.THE_STACK:
-                    // 해상도 9:16으로 변경(에디터 모드에서는 적용되지 않음)
-                    //Screen.SetResolution(1080, 1920, true);
-                    SceneManager.LoadScene("TheStack");
                     break;
 
                 case EMiniGameType.TOPDOWN_SHOOTING:

@@ -9,7 +9,6 @@ namespace MyUnityWorld
     public class LeaderBoardUI : BaseUI
     {
         [SerializeField] private Button _flappyPlaneButton;
-        [SerializeField] private Button _theStackButton;
         [SerializeField] private Button _TopdownButton;
         [SerializeField] private Button _exitButton;
 
@@ -23,7 +22,6 @@ namespace MyUnityWorld
         private void Awake()
         {
             _flappyPlaneButton.onClick.AddListener(OnClickFlappyPlaneButton);
-            _theStackButton.onClick.AddListener(OnClickTheStackButton);
             _TopdownButton.onClick.AddListener(OnClickTopDownButton);
             _exitButton.onClick.AddListener(OnClickExitButton);
         }
@@ -38,11 +36,6 @@ namespace MyUnityWorld
         public void OnClickFlappyPlaneButton()
         {
             _scoreBoardUI.UpdateScore(GameData.FlappyPlaneBest);
-        }
-
-        public void OnClickTheStackButton()
-        {
-            _scoreBoardUI.UpdateScore(GameData.TheStackBest);
         }
 
         public void OnClickTopDownButton()
