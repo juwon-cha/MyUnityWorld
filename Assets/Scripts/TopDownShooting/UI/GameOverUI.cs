@@ -15,7 +15,7 @@ namespace TopDownShooting
         public void OnEnable()
         {
             // 최고 점수(웨이브) 저장
-            GameManager.Instance.UpdateBestScore();
+            GameData.UpdateBestScore(GameManager.Instance.Wave, GameData.TopDownBest, "TopDownBest");
         }
 
         public override void Init(UIManager uiManager)

@@ -15,7 +15,7 @@ namespace FlappyPlane
         public void OnEnable()
         {
             // 최고 점수 저장
-            GameManager.Instance.UpdateBestScore();
+            GameData.UpdateBestScore(GameManager.Instance.Score, GameData.FlappyPlaneBest, "FlappyPlaneBest");
         }
 
         public override void Init(UIManager uiManager)

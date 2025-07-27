@@ -63,8 +63,8 @@ public class GameManager : Singleton<GameManager>
     public void LoadBestScores()
     {
         // PlayerPrefs에서 최고 점수 문자열 불러옴
-        GameData.FlappyPlaneBest = PlayerPrefs.GetString("FlappyPlaneBest", "0000000");
-        GameData.TheStackBest = PlayerPrefs.GetString("TheStackBest", "0000000");
-        GameData.TopDownBest = PlayerPrefs.GetString("TopDownBest", "0000000");
+        GameData.FlappyPlaneBest = PlayerPrefs.GetString("FlappyPlaneBest", "0,0,0,0,0,0,0");
+        GameData.TheStackBest = PlayerPrefs.GetString("TheStackBest", "0,0,0,0,0,0,0");
+        GameData.TopDownBest = PlayerPrefs.GetString("TopDownBest", "0,0,0,0,0,0,0");
     }
 }

@@ -12,7 +12,7 @@ namespace TopDownShooting
         private ResourceController _playerResourceController;
 
         [SerializeField] private int _currentWaveIndex = 0;
-        private int _bestWave = 0;
+        public int Wave { get { return _currentWaveIndex; } }
 
         private EnemyManager _enemyManager;
         private UIManager _uiManager;
@@ -74,34 +74,6 @@ namespace TopDownShooting
         {
             _enemyManager.StopWave();
             _uiManager.SetGameOver();
-        }
-
-        public void UpdateBestScore()
-        {
-            if (_currentWaveIndex > _bestWave)
-            {
-                _bestWave = _currentWaveIndex;
-            }
-
-            string topDownBest = GameData.TopDownBest;
-
-            // 기존 최고 점수와 비교하여 갱신
-            for (int i = 0; i < topDownBest.Length; i++)
-            {
-                int score = topDownBest[i] - '0';
-
-                if (_bestWave > score)
-                {
-                    // 현재 최고 점수가 기존 최고 점수보다 높으면 갱신
-                    topDownBest = topDownBest.Insert(i, _bestWave.ToString());
-
-                    // 최고 점수 7개까지만 저장
-                    topDownBest = topDownBest.Remove(topDownBest.Length - 1);
-                    break;
-                }
-            }
-
-            PlayerPrefs.SetString("TopDownBest", topDownBest);
         }
     }
 }

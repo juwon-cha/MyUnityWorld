@@ -22,13 +22,16 @@ public class ScoreBoardUI : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < bestScores.Length; ++i)
+        string[] scores = bestScores.Split(',');
+
+        for (int i = 0; i < scores.Length; ++i)
         {
             // 점수 문자열에서 해당 인덱스의 점수를 가져옴
-            int scoreValue = 0;
-            if(int.TryParse(bestScores[i].ToString(), out scoreValue))
+            int score = 0;
+
+            if(int.TryParse(scores[i], out score))
             {
-                _ScoreTexts[i].SetBestScore(scoreValue);
+                _ScoreTexts[i].SetBestScore(score);
             }
         }
     }
