@@ -37,7 +37,12 @@ namespace MyUnityWorld
         public void HandleEnter()
         {
             // 상호작용 가능한 대상이 범위 안에 있을 때만 로직 실행
-            // TODO: NPC는 엔터키 처리 안되게 처리
+            // NPC는 엔터키 처리 안되게 처리
+            if(_interactableObject.CompareTag("NPC"))
+            {
+                return;
+            }
+
             if (_interactableObject != null)
             {
                 InteractionManager.Instance.EnterEvent(_interactableObject);
