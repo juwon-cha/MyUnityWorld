@@ -6,9 +6,19 @@
 
 MyUnityWorld는 다양한 상호작용과 미니게임을 즐길 수 있는 2D 롤플레잉 게임이다. 플레이어는 자신의 캐릭터를 커스터마이징하고, 월드를 탐험하며 NPC와 대화하고 다양한 미니게임을 즐길 수 있다.
 
-## 플레이 예시
+<br>
 
+## 플레이 영상
 
+<div align="center">
+
+  <a href="https://www.youtube.com/watch?v=Dm5P9lV6eTw">
+    <img src="https://img.youtube.com/vi/Dm5P9lV6eTw/maxresdefault.jpg" width="600" alt="첫 번째 유튜브 영상 썸네일">
+  </a>
+
+</div>
+
+<br>
 
 ## 프로젝트 구조
 
@@ -36,11 +46,15 @@ MyUnityWorld/
 └── ProjectSettings/      # 프로젝트 설정
 ```
 
+<br>
+
 ## 설치 및 실행 방법
 
 1. Unity Hub를 실행한다.
 2. "프로젝트 열기"를 선택하고 이 프로젝트의 루트 폴더를 선택한다.
 3. Unity 에디터가 열리면 `Assets/Scenes/MyUnityWorld.unity` 씬을 실행한다.
+
+<br>
 
 ## 주요 기능 및 구현 방식
 
