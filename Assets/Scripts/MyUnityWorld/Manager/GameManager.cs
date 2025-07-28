@@ -5,11 +5,13 @@ namespace MyUnityWorld
     public class GameManager : Singleton<GameManager>
     {
         [SerializeField] private PlayerController _playerController;
+        [SerializeField] private CustomizeSelectUI _customizeSelectUI;
 
         // 미니게임에서 복귀했을 때 플레이어 컨트롤러 초기화 및 저장된 설정 불러오기
         private void OnEnable()
         {
             LoadBestScores();
+            LoadCustomizingSettings();
 
             _playerController = FindObjectOfType<PlayerController>();
             LoadPlayerCoordinates();
@@ -59,7 +61,7 @@ namespace MyUnityWorld
             }
         }
 
-        public void UpdateCharacterEquipment(Sprite sprite, int index)
+        public void UpdateCharacterEquipment(Sprite sprite)
         {
             if (_playerController != null)
             {
@@ -71,7 +73,7 @@ namespace MyUnityWorld
             }
         }
 
-        public void UpdateCharacterRide(RideHandler handler, int index)
+        public void UpdateCharacterRide(RideHandler handler)
         {
             if(handler == null)
             {
@@ -94,6 +96,18 @@ namespace MyUnityWorld
             // PlayerPrefs에서 최고 점수 문자열 불러옴
             GameData.FlappyPlaneBest = PlayerPrefs.GetString("FlappyPlaneBest", "0,0,0,0,0,0,0");
             GameData.TopDownBest = PlayerPrefs.GetString("TopDownBest", "0,0,0,0,0,0,0");
+        }
+
+        public void LoadCustomizingSettings()
+        {
+            // PlayerPrefs에서 선택된 색상, 장비, 탈것 인덱스 불러오기
+            GameData.SelectedColorIndex = PlayerPrefs.GetInt("SelectedColorIndex", -1);
+            GameData.SelectedEquipmentIndex = PlayerPrefs.GetInt("SelectedEquipmentIndex", -1);
+            GameData.SelectedRideIndex = PlayerPrefs.GetInt("SelectedRideIndex", -1);
+
+            _customizeSelectUI.UpdateColorButton(GameData.SelectedColorIndex);
+            _customizeSelectUI.UpdateEquipButton(GameData.SelectedEquipmentIndex);
+            _customizeSelectUI.UpdateRideButton(GameData.SelectedRideIndex);
         }
     }
 }

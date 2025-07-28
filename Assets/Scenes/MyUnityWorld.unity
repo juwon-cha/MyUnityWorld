@@ -23347,6 +23347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 1774780765}
+  _customizeSelectUI: {fileID: 668386855}
 --- !u!4 &1823078139
 Transform:
   m_ObjectHideFlags: 0

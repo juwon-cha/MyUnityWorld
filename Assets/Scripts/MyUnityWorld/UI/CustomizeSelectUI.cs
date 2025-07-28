@@ -72,6 +72,9 @@ namespace MyUnityWorld
 
             // 인게임 캐릭터 색상 업데이트
             GameManager.Instance.UpdateCharacterColor(selectedColor);
+
+            PlayerPrefs.SetInt("SelectedColorIndex", selectedIndex);
+            PlayerPrefs.Save();
         }
 
         public void UpdatePreviewColor(Color color)
@@ -110,7 +113,7 @@ namespace MyUnityWorld
             if (selectedIndex >= 3 && selectedIndex < _equipmentSelectButtons.Count)
             {
                 _equipmentPreview.gameObject.SetActive(false);
-                GameManager.Instance.UpdateCharacterEquipment(null, -1);
+                GameManager.Instance.UpdateCharacterEquipment(null);
 
                 // 체크 표시 해제
                 for (int i = 0; i < _equipmentSelectButtons.Count; i++)
@@ -133,7 +136,10 @@ namespace MyUnityWorld
             UpdatePreviewEquipment(equip.EquipmentRenderer.sprite);
 
             // 인게임 캐릭터 장비 업데이트
-            GameManager.Instance.UpdateCharacterEquipment(equip.EquipmentRenderer.sprite, selectedIndex);
+            GameManager.Instance.UpdateCharacterEquipment(equip.EquipmentRenderer.sprite);
+
+            PlayerPrefs.SetInt("SelectedEquipmentIndex", selectedIndex);
+            PlayerPrefs.Save();
         }
 
         public void UpdatePreviewEquipment(Sprite sprite)
@@ -176,7 +182,7 @@ namespace MyUnityWorld
             {
                 _characterPreview.rectTransform.localPosition = new Vector3(_characterPreview.rectTransform.localPosition.x, 0, _characterPreview.rectTransform.localPosition.z); // 캐릭터 프리뷰 위치 조정
                 _ridePreview.gameObject.SetActive(false);
-                GameManager.Instance.UpdateCharacterRide(null, -1);
+                GameManager.Instance.UpdateCharacterRide(null);
 
                 // 체크 표시 해제
                 for (int i = 0; i < _rideSelectButtons.Count; i++)
@@ -199,7 +205,10 @@ namespace MyUnityWorld
             UpdatePreviewRide(ride.RideRenderer.sprite);
 
             // 인게임 탈것 업데이트
-            GameManager.Instance.UpdateCharacterRide(ride, selectedIndex);
+            GameManager.Instance.UpdateCharacterRide(ride);
+
+            PlayerPrefs.SetInt("SelectedRideIndex", selectedIndex);
+            PlayerPrefs.Save();
         }
 
         public void UpdatePreviewRide(Sprite sprite)
