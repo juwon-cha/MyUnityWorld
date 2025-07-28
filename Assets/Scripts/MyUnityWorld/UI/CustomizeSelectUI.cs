@@ -109,7 +109,7 @@ namespace MyUnityWorld
                 return;
             }
 
-            // TEMP
+            // TEMP 장비해제
             if (selectedIndex >= 3 && selectedIndex < _equipmentSelectButtons.Count)
             {
                 _equipmentPreview.gameObject.SetActive(false);
@@ -120,6 +120,9 @@ namespace MyUnityWorld
                 {
                     _equipmentSelectButtons[i].SetInteractable(false);
                 }
+
+                PlayerPrefs.SetInt("SelectedEquipmentIndex", -1);
+                PlayerPrefs.Save();
 
                 return;
             }
@@ -177,7 +180,7 @@ namespace MyUnityWorld
                 return;
             }
 
-            // TEMP
+            // TEMP 탈것 해제
             if (selectedIndex >= 3 && selectedIndex < _rideSelectButtons.Count)
             {
                 _characterPreview.rectTransform.localPosition = new Vector3(_characterPreview.rectTransform.localPosition.x, 0, _characterPreview.rectTransform.localPosition.z); // 캐릭터 프리뷰 위치 조정
@@ -189,6 +192,9 @@ namespace MyUnityWorld
                 {
                     _rideSelectButtons[i].SetInteractable(false);
                 }
+
+                PlayerPrefs.SetInt("SelectedRideIndex", -1);
+                PlayerPrefs.Save();
 
                 return;
             }
