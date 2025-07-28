@@ -22,11 +22,11 @@ public class CameraFollow : MonoBehaviour
 
         if (_tilemap != null)
         {
-            // 타일맵의 경계를 계산
-            _tilemap.CompressBounds(); // 타일맵의 경계를 정확하게 계산
+            // 타일맵의 경계 계산
+            _tilemap.CompressBounds();
             BoundsInt bounds = _tilemap.cellBounds;
 
-            // 카메라의 월드 크기를 계산
+            // 카메라의 월드 크기 계산
             float camHeight = _camera.orthographicSize * 2;
             float camWidth = camHeight * _camera.aspect;
 
