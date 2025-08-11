@@ -1,10 +1,14 @@
 # MyUnityWorld
 
-**Unity Editor Version:** 2022.3.17f1
-
 ## 프로젝트 개요
 
 MyUnityWorld는 다양한 상호작용과 미니게임을 즐길 수 있는 2D 롤플레잉 게임이다. 플레이어는 자신의 캐릭터를 커스터마이징하고, 월드를 탐험하며 NPC와 대화하고 다양한 미니게임을 즐길 수 있다.
+
+개발 인원: 1인 개발
+<br>
+개발 기간: 2025.07.22 - 2025.07.28
+<br>
+Unity Editor Version: 2022.3.17f1
 
 <br>
 
@@ -15,7 +19,6 @@ MyUnityWorld는 다양한 상호작용과 미니게임을 즐길 수 있는 2D �
   <a href="https://www.youtube.com/watch?v=Dm5P9lV6eTw">
     <img src="https://img.youtube.com/vi/Dm5P9lV6eTw/maxresdefault.jpg" width="600" alt="첫 번째 유튜브 영상 썸네일">
   </a>
-
 </div>
 
 <br>
